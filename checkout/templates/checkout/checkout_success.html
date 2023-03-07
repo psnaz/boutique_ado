@@ -35,7 +35,6 @@
                             <small class="text-muted">Order Information:</small>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="small mb-0 text-black font-weight-bold">Order Number</p>
@@ -44,7 +43,6 @@
                             <p class="small mb-0">{{ order.order_number }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Order Date</p>
@@ -53,13 +51,11 @@
                             <p class="mb-0">{{ order.date }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Order Details:</small>
                         </div>
                     </div>
-
                     {% for item in order.lineitems.all %}
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -72,7 +68,6 @@
                         </div>
                     </div>
                     {% endfor %}
-
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Delivering To:</small>
@@ -87,7 +82,6 @@
                             <p class="mb-0">{{ order.full_name }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Address 1</p>
@@ -96,7 +90,6 @@
                             <p class="mb-0">{{ order.street_address1 }}</p>
                         </div>
                     </div>
-
                     {% if order.street_address2 %}
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -147,7 +140,7 @@
                             <p class="mb-0">{{ order.country }}</p>
                         </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Phone Number</p>
@@ -171,7 +164,6 @@
                             <p class="mb-0">{{ order.order_total }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Delivery Charges</p>
@@ -180,7 +172,6 @@
                             <p class="mb-0">{{ order.delivery_cost }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Grand Total</p>
@@ -189,17 +180,26 @@
                             <p class="mb-0">{{ order.grand_total }}</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-lg-7 text-right">
-                <a href="{% url 'products' %}?category=newarrivals,deals,clearance" class="btn btn-black rounded-0 my-2">
-                    <span class="icon mr-2">
-                        <i class="fas fa-gifts"></i>
-                    </span></a>
-                    <span class="text-uppercase">Now check out the lastest deals!</span>
+                {% if from_profile %}
+                    <a href="{% url 'profile' %}" class="btn btn-black rounded-0 my-2">
+                        <span class="icon mr-2">
+                            <i class="fas fa-angle-left"></i>
+                        </span>
+                        <span class="text-uppercase">Back to Profile</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'products' %}?category=newarrivals,deals,clearance" class="btn btn-black rounded-0 my-2">
+                        <span class="icon mr-2">
+                            <i class="fas fa-gifts"></i>
+                        </span>
+                        <span class="text-uppercase">Now check out the lastest deals!</span>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
